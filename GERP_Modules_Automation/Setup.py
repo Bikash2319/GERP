@@ -53,7 +53,7 @@ def login(driver, domain):
 
     #Login with credentials
     driver.get(f"{domain}/login")
-    WebDriverWait(driver, 10).until(ec.visibility_of_element_located((By.ID, "floatingInputValue"))).send_keys("bikash.sahoo@sharajman.com")
+    WebDriverWait(driver, 10).until(ec.visibility_of_element_located((By.ID, "floatingInputValue"))).send_keys("animesh.joshi@sharajman.com")
     driver.find_element(By.XPATH, "//input[@placeholder='Password']").send_keys("Admin@1234")
     driver.find_element(By.XPATH, "//button[text()='Login ']").click()
     WebDriverWait(driver, 10).until(ec.url_contains("solar-plant-dashboard"))
