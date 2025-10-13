@@ -53,14 +53,19 @@ def login(driver, domain):
 
     #Login with credentials
     driver.get(f"{domain}/login")
-    WebDriverWait(driver, 10).until(ec.visibility_of_element_located((By.ID, "floatingInputValue"))).send_keys("animesh.joshi@sharajman.com")
-    driver.find_element(By.XPATH, "//input[@placeholder='Password']").send_keys("Admin@1234")
-    driver.find_element(By.XPATH, "//button[text()='Login ']").click()
+    WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='email']"))).send_keys("animesh.joshi@sharajman.com")
+    WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='password']"))).send_keys("Admin@1234")
+    WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Login ']"))).click()
+    # driver.find_element(By.XPATH, "//input[@formcontrolname='email']").send_keys("animesh.joshi@sharajman.com")
+    # driver.find_element(By.XPATH, "//input[@placeholder='Password']").send_keys("Admin@1234")
+    # driver.find_element(By.XPATH, "//button[text()='Login ']").click()
     WebDriverWait(driver, 10).until(ec.url_contains("solar-plant-dashboard"))
     print("Logged in with credentials")
 
     #Save new token
-    new_token = driver.execute_script("return window.localStorage.getItem('token');")
+    new_token = WebDriverWait(driver, 15).until(
+        lambda d: d.execute_script("return window.localStorage.getItem('token');")
+    )
     if new_token:
         save_token(new_token)
         print(f"New token saved to token.txt : {new_token}")

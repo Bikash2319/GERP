@@ -26,7 +26,7 @@ wait.until(ec.presence_of_element_located((By.CSS_SELECTOR, "[formcontrolname='m
 wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Generate OTP']"))).click()
 
 # Get date, subject and body len of all emails from INBOX folder
-with MailBox('imap.mail.com').login('bikash.sahoo@sharajaman.com', 'vlvx oqyj rzsr rhhp') as mailbox:
+with MailBox('mail.google.com').login('bikash.sahoo@sharajaman.com', 'vlvx oqyj rzsr rhhp') as mailbox:
     for msg in mailbox.fetch():
         print(msg.date, msg.subject, len(msg.text or msg.html))
 
