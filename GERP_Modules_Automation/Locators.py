@@ -1,9 +1,10 @@
-from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as ec
-from Setup import *
 
+#universal locators
+search_bar = (By.XPATH, "//div[@class='cst-search']")
+cancel_button = (By.XPATH, "//button[text()='Cancel']")
+save_button = (By.XPATH, "//button[text()='Save']")
+update_button = (By.XPATH, "//button[text()='Update']")
 
 #sidebar locator
 side_bar = (By.XPATH, "//aside[@class='left-sidebar']")
@@ -65,6 +66,10 @@ string_dashboard = (By.XPATH, "//aside//span[text()= 'String Dashboard']")
 scheduler = (By.XPATH, "//aside//span[text()= 'Scheduler']")
 task_viewer = (By.XPATH, "//aside//span[text()= 'Task Viewer']")
 maintenance_new = (By.XPATH, "//aside//span[text()= 'Maintenance New']")
+
+#Make module
+add_make = (By.XPATH, "//div[@ngbtooltip='Add Make']")
+
 
 
     
