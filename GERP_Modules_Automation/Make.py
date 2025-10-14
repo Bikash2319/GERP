@@ -4,7 +4,6 @@ from Setup import *
 from Universal_locators import *
 
 driver, wait = setup_driver()
-
 domain = "https://app.release.gensomerp.com"
 
 login(driver, domain)
@@ -14,7 +13,14 @@ side_bar.click()
 print("Sidebar is clicked.")
 
 
-time.sleep(3)
+logout_gensom(wait)
+
+
+
+
+
+
+# time.sleep(3)
 
 
 

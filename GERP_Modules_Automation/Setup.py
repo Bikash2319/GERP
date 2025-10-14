@@ -69,3 +69,17 @@ def login(driver, domain):
     if new_token:
         save_token(new_token)
         print(f"New token saved to token.txt : {new_token}")
+        
+        
+def logout_gensom( wait):
+    wait.until(ec.presence_of_element_located((By.XPATH, "//li[@placement='bottom-end']"))).click()
+    time.sleep(0.5)
+    wait.until(ec.element_to_be_clickable((By.XPATH, "//p-button[@ptooltip='Logout']"))).click()
+    if os.path.exists(TOKEN):
+        with open(TOKEN, "w") as f:
+            f.truncate(0)
+        print("Token cleared successfully after logout.")
+    else:
+        print("Token not found, nothing to clear.")
+    
+    
