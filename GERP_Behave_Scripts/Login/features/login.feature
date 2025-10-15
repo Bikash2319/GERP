@@ -8,6 +8,6 @@ Scenario: Login using valid credentials
 
 Scenario: Login using invalid credentials
     Given User should navigate to login page
-    When User enter valid email and Password
+    When User enter invalid email and invalid Password
     And User click on Login button
     Then User should not able to logged in and error toaster message should displayed

@@ -43,6 +43,7 @@ def login(driver, domain):
     print(token)
     if token:
         driver.execute_script(f"window.localStorage.setItem('token', '{token}');")
+        time.sleep(1)
         driver.get(f"{domain}/solar-plant-dashboard")
         try:
             WebDriverWait(driver, 10).until(ec.domain_contains("solar-plant-dashboard"))

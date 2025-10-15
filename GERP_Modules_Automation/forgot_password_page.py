@@ -29,6 +29,8 @@ wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Generate OTP'
 with MailBox('mail.google.com').login('bikash.sahoo@sharajaman.com', 'vlvx oqyj rzsr rhhp') as mailbox:
     for msg in mailbox.fetch():
         print(msg.date, msg.subject, len(msg.text or msg.html))
+        
+        
 
 
 
