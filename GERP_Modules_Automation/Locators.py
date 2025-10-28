@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 
 #universal locators
-search_bar = (By.XPATH, " ")
+search_bar = (By.XPATH, "//input[@placeholder='Search']")
 cancel_button = (By.XPATH, "//button[text()='Cancel']")
 save_button = (By.XPATH, "//button[text()='Save']")
 update_button = (By.XPATH, "//button[text()='Update']")

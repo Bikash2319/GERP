@@ -1,7 +1,11 @@
 from selenium.webdriver.common.by import By
 
+#Universal locators
+search_bar = (By.XPATH, "//input[@placeholder='Search']")
+save_button = (By.XPATH, "//button[text()='Save']")
+cancel_button = (By.XPATH, "//button[text()='Cancel']")
 
-#sidebar locator
+#sidebar 
 side_bar = (By.XPATH, "//aside[@class='left-sidebar']")
 
 #locators of sidebar menu
@@ -62,5 +66,8 @@ scheduler = (By.XPATH, "//aside//span[text()= 'Scheduler']")
 task_viewer = (By.XPATH, "//aside//span[text()= 'Task Viewer']")
 maintenance_new = (By.XPATH, "//aside//span[text()= 'Maintenance New']")
 
+
+#make
+add_make_btn = (By.XPATH, "//div[@ngbtooltip='Add Make']")
 
     

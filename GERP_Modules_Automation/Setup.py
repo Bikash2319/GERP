@@ -2,24 +2,28 @@ import os
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 TOKEN = r"C:\Automation\GERP\GERP_Modules_Automation\token.txt"
 
 
-def setup_driver():
-    
-    chrome_options = Options()
+def setup_driver():  
     time.sleep(0.5)
     # chrome_options.add_argument("--ignore-certificate-errors")
     # chrome_options.add_argument("--ignore-ssl-errors")
     # chrome_options.add_argument("--allow-insecure-localhost") 
-    driver = webdriver.Chrome(options=chrome_options)
+    chrome_option = Options()
+    service = Service(executable_path=r"C:\Program Files\Python\Scripts\chromedriver.exe")
+    driver = webdriver.Chrome(options=chrome_option, service=service)
     driver.maximize_window()
-    driver.implicitly_wait(20)
-    wait = WebDriverWait(driver, 20) 
+    driver.implicitly_wait(10)
+    wait = WebDriverWait(driver, 10) 
+    actions = ActionChains(driver)
     return driver, wait
     
 
@@ -70,7 +74,7 @@ def login(driver, domain):
         print(f"New token saved to token.txt : {new_token}")
         
         
-def logout_gensom( wait):
+def logout_gensom(wait):
     wait.until(ec.presence_of_element_located((By.XPATH, "//li[@placement='bottom-end']"))).click()
     time.sleep(0.5)
     wait.until(ec.element_to_be_clickable((By.XPATH, "//p-button[@ptooltip='Logout']"))).click()
@@ -80,5 +84,12 @@ def logout_gensom( wait):
         print("Token cleared successfully after logout.")
     else:
         print("Token not found, nothing to clear.")
+        
+
+def click_on(driver , wait, element):
+    actions = ActionChains(driver)
+    actions.click(wait.until(ec.element_to_be_clickable(element))).send_keys(Keys.ENTER).perform()
+    time.sleep(2)
+    # actions.move_to_element(driver.find_element(By.CSS_SELECTOR, "[fill='url(#pattern0_48_8)']")).perform()
     
     

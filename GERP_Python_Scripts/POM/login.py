@@ -9,7 +9,6 @@ from selenium.webdriver.chrome.service import Service
 
 chrome_option = Options()
 service = Service(executable_path=r"C:\Program Files\Python\Scripts\chromedriver.exe")
-
 driver = webdriver.Chrome(options=chrome_option, service=service)
 driver.maximize_window()
 driver.implicitly_wait(20)

@@ -1,5 +1,6 @@
 Feature:  Test the project onboarding process of GenSOM ERP
 
+@login_required
 Scenario: Onboard a project in valid way
 Given User should redirect to Make master and enter a make
 And User should redirect to Category master and enter a category

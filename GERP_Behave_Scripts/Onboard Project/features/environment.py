@@ -26,6 +26,7 @@ def before_scenario(context, scenario):
         context.wait.until(ec.url_contains('solar'))
         print("Login successfull.")
         time.sleep(1)
+        context.wait.until(ec.presence_of_element_located((By.ID, "toast-container"))).click()
 
 
 def after_scenario(context, scenario):
