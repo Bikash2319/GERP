@@ -13,3 +13,11 @@ When User click on Make sub-menu from Master menu
 And User click on add make button
 Then User enters the make and click on save button
 Then Make is successfully saved into the system
+
+@login_required
+Scenario: Verify by adding invalid character and try to save a make
+Given User logged into the application
+When User click on Make sub-menu from Master menu
+And User click on add make button
+Then User enters blank spaces and click on save button
+Then Make should not be saved and error toaster message should be displayed

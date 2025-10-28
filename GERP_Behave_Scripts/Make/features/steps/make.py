@@ -20,6 +20,7 @@ def step_impl(context):
 
 @when(u'User click on Make sub-menu from Master menu')
 def step_impl(context):
+    context.wait.until(ec.presence_of_element_located((By.ID, "toast-container"))).click()
     context.wait.until(ec.presence_of_element_located((By.XPATH, "//aside[@class='left-sidebar']"))).click()
     context.wait.until(ec.presence_of_element_located((By.XPATH, "//aside//span[text()= 'Master ']"))).click()
     context.wait.until(ec.presence_of_element_located((By.XPATH, "//aside//span[text()= 'Make']"))).click()
@@ -28,10 +29,11 @@ def step_impl(context):
 @then(u'User successfully redirect to make master page')
 def step_impl(context):
     # assert "make" in context.driver.current_url(), "user is not redirected to make master"
-    if "make" in context.driver.current_url():
-        print("User successfully redirect to make master page.")
-    else:
-        print("User does not navigate to make master page.")
+    # if "make" in context.driver.current_url():
+    #     print("User successfully redirect to make master page.")
+    # else:
+    #     print("User does not navigate to make master page.")
+    print(context.driver.current_url())
 
 @when(u'User click on add make button')
 def step_impl(context):
@@ -42,6 +44,8 @@ def step_impl(context):
 def step_impl(context):
     context.wait.until(ec.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='make_name']"))).send_keys("product make")
     context.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Save']"))).click()
+    time.sleep(1)
+    context.wait.until(ec.presence_of_element_located((By.ID, "toast-container"))).click()
 
 @then(u'Make is successfully saved into the system')
 def step_impl(context):
@@ -51,3 +55,22 @@ def step_impl(context):
         print(toaster.text)
     else:
         print("Make does not save into the system.")
+        
+@then(u'User enters blank spaces and click on save button')
+def step_impl(context):
+    context.wait.until(ec.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='make_name']"))).send_keys("        ")
+    context.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Save']"))).click()   
+    
+@then(u'Make should not be saved and error toaster message should be displayed')
+def step_impl(context):
+    time.sleep(1)
+    toaster = context.wait.until(ec.presence_of_element_located((By.ID, "toast-container")))
+    toaster_txt = toaster.text
+    toaster.click()
+    
+    if " characters " in toaster_txt:
+        print(toaster_txt)
+        context.wait.until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Cancel']"))).click()
+        
+    else:
+        print("Incorrect make saved into the system successfully.")
