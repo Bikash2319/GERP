@@ -8,6 +8,7 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import Select
 
 TOKEN = r"C:\Automation\GERP\GERP_Modules_Automation\token.txt"
 
@@ -24,9 +25,8 @@ def setup_driver():
     driver.implicitly_wait(10)
     wait = WebDriverWait(driver, 10) 
     actions = ActionChains(driver)
-    return driver, wait
+    return driver, wait, actions
     
-
 def read_token():
     if os.path.exists(TOKEN):
         with open(TOKEN, "r") as f:

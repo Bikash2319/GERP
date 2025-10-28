@@ -76,6 +76,31 @@ maintenance_new = (By.XPATH, "//aside//span[text()= 'Maintenance New']")
 add_make = (By.XPATH, "//div[@ngbtooltip='Add Make']")
 make_input = (By.XPATH, "//input[@formcontrolname='make_name']")
 
+#category module
+add_category = (By.XPATH, "//div[@ngbtooltip='Add Category']")
+category_input = (By.XPATH, "//input[@formcontrolname='catType']")
+
+
+#model module
+add_model = (By.XPATH, "//div[@ngbtooltip='Add Model']")
+model_make_dd = (By.XPATH, "//select[@formcontrolname='make_id']")
+model_category_dd = (By.XPATH, "//select[@formcontrolname='category_id']")
+model_sub_category_dd = (By.XPATH, "//select[@formcontrolname='sub_category_id']")
+model_input = (By.XPATH, "//input[@formcontrolname='model_name']")
+
+
+#sub category module
+add_sub_category = (By.XPATH, "//div[@ngbtooltip='Add SubCategory']")
+subCat_category_dd = (By.XPATH, "//select[@formcontrolname='catType']")
+subCat_input = (By.XPATH, "//input[@formcontrolname='subCat']")
+
+#warehouse module
+
+
+
+
+#inventory module
+
 
 
 
