@@ -41,7 +41,7 @@ def step_impl(context):
 
 @then(u'User should able to logged into the application and Overview Dashboard page should be displayed')
 def step_impl(context):
-    assert "solar" in context.driver.current_url, "Dashboard page is displayed."
+    assert "solar" in context.driver.current_url, "Dashboard page is not displayed."
 
 @then(u'User should not able to logged in and error toaster message should displayed')
 def step_impl(context):

@@ -1,10 +1,15 @@
 from selenium.webdriver.common.by import By
 
 #universal locators
-search_bar = (By.XPATH, "//div[@class='cst-search']")
+search_bar = (By.XPATH, " ")
 cancel_button = (By.XPATH, "//button[text()='Cancel']")
 save_button = (By.XPATH, "//button[text()='Save']")
 update_button = (By.XPATH, "//button[text()='Update']")
+view_icon = (By.XPATH, "//a[@ngbtooltip='View']")
+edit_icon = (By.XPATH, "//a[@ngbtooltip='Edit']")
+delete_icon = (By.XPATH, "//a[@ngbtooltip='Delete']")
+yes_button = (By.XPATH, "//button[text()='Yes']")
+toaster = (By.ID, "toast-container")
 
 #sidebar locator
 side_bar = (By.XPATH, "//aside[@class='left-sidebar']")
@@ -69,6 +74,8 @@ maintenance_new = (By.XPATH, "//aside//span[text()= 'Maintenance New']")
 
 #Make module
 add_make = (By.XPATH, "//div[@ngbtooltip='Add Make']")
+make_input = (By.XPATH, "//input[@formcontrolname='make_name']")
+
 
 
 

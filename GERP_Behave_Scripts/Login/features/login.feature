@@ -1,4 +1,4 @@
-Feature: Test Login functionality of GERP
+Feature: Test login functionality of GERP
 
 Scenario: Login using valid credentials
     Given User should navigate to login page

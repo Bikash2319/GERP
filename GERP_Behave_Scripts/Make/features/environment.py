@@ -29,6 +29,7 @@ def before_scenario(context, scenario):
 
 
 def after_scenario(context, scenario):
+    time.sleep(1)
     context.wait.until(ec.element_to_be_clickable((By.XPATH, "//*[@id='navbarSupportedContent']/div/app-vertical-navigation/ul[2]/li[6]/a/div"))).click()
     time.sleep(1)
     context.wait.until(ec.element_to_be_clickable((By.CSS_SELECTOR, "[ptooltip='Logout']"))).click()

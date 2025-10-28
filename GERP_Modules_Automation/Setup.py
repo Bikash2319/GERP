@@ -18,8 +18,8 @@ def setup_driver():
     # chrome_options.add_argument("--allow-insecure-localhost") 
     driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
-    driver.implicitly_wait(10)
-    wait = WebDriverWait(driver, 10) 
+    driver.implicitly_wait(20)
+    wait = WebDriverWait(driver, 20) 
     return driver, wait
     
 
@@ -37,16 +37,14 @@ def save_token(token):
 
 def login(driver, domain):
     driver.get(f"{domain}/login")
-
     #login with token
     token = read_token()
-    print(token)
     if token:
         driver.execute_script(f"window.localStorage.setItem('token', '{token}');")
         time.sleep(1)
         driver.get(f"{domain}/solar-plant-dashboard")
         try:
-            WebDriverWait(driver, 10).until(ec.domain_contains("solar-plant-dashboard"))
+            WebDriverWait(driver, 10).until(ec.url_contains("solar"))
             print("Logged in with saved token")
             return
         except:
