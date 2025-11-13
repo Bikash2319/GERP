@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+import pandas as pd
 
 TOKEN = r"C:\Automation\GERP\GERP_Modules_Automation\token.txt"
 
@@ -56,12 +57,9 @@ def login(driver, domain):
 
     #Login with credentials
     driver.get(f"{domain}/login")
-    WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='email']"))).send_keys("animesh.joshi@sharajman.com")
-    WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='password']"))).send_keys("Admin@1234")
+    WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='email']"))).send_keys("bikash.sahoo@sharajman.com")
+    WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, "//input[@formcontrolname='password']"))).send_keys("Gensom@1234")
     WebDriverWait(driver, 10).until(ec.element_to_be_clickable((By.XPATH, "//button[text()='Login ']"))).click()
-    # driver.find_element(By.XPATH, "//input[@formcontrolname='email']").send_keys("animesh.joshi@sharajman.com")
-    # driver.find_element(By.XPATH, "//input[@placeholder='Password']").send_keys("Admin@1234")
-    # driver.find_element(By.XPATH, "//button[text()='Login ']").click()
     WebDriverWait(driver, 10).until(ec.url_contains("solar-plant-dashboard"))
     print("Logged in with credentials")
 
