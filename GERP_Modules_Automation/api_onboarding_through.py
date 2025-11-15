@@ -1,6 +1,7 @@
 import requests
 import json
 from Setup import *
+from Locators import *
 
 token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiaWthc2guc2Fob29Ac2hhcmFqbWFuLmNvbSIsImxvZ2luX2lkIjoyNiwidXNlcl9pZCI6MzEsInVzZXJfdHlwZSI6Ik8mTSBURUFNIiwiZXhwIjoxNzYzMjU5MDc0fQ.-HFPeXhrC3mUxKqr_gQ79OsAGn73-VTHyjxTaCRCeew"
 base_url = "https://app.release.gensomerp.com"
@@ -16,7 +17,7 @@ file_path = "C:\Automation\GERP\project_details.xlsx"
 df = pd.read_excel(file_path, "demo")
 data_list = df.to_dict(orient="records")
 
-for i in range(1, 2):    
+for i in range(1, 2):
     for item in data_list:
         project_name = item.get("project_name")
         # print(f"DEMO-{project_name}-{i:03d}")
@@ -49,44 +50,40 @@ for i in range(1, 2):
             "end_time": "19:30",
             "display_order": do #need to fetch from the excel sheet
         }
-
-
         create_plant_url = f"{base_url}/api/add_basic_plant_details"
-
+        
         try:
             response = requests.post(create_plant_url, headers=headers, data=json.dumps(plant_payload))
             print("Status Code:", response.status_code)
-
+            
             if response.status_code == 201:
                 response_data = response.json()
                 project_id = response_data.get("data", {}).get("plant_id")
-
+                
                 if not project_id:
                     print("Unable to fetch the project id from the response.")
                 else:
                     print(f"Project ID: {project_id}")
-
+                    
                     try:
                         site_user_url = f"{base_url}/api/link_user_to_project/{project_id}"
                         site_person_payload = {
                             "user_id": 31,
                             "role_type": "SITE_TECH"
                         }
-
                         link_response = requests.post(site_user_url, headers=headers, data=json.dumps(site_person_payload))
                         print("\nUser Status Code:", link_response.status_code)
 
-                        if link_response.status_code == 200:
+                        if link_response.status_code == 201:
                             print(f"User linked successfully to project ID {project_id}")
                         else:
                             print(f"Failed to link user: {link_response.text}")
-
                     except requests.exceptions.RequestException as e:
                         print(f"Error while linking user to project: {e}")
-
+                        
             else:
                 print(f"Project creation failed: {response.text}")
-
+                
         except requests.exceptions.Timeout:
             print("Request timed out. Please check your network connection.")
         except requests.exceptions.ConnectionError:
@@ -94,6 +91,10 @@ for i in range(1, 2):
         except requests.exceptions.RequestException as e:
             print(f"Unexpected error while creating project: {e}")
 
+    actions.move_to_element(wait.until(ec.element_to_be_clickable(side_bar))).perform()
+    click_on(driver, wait, asset_menu)
+    
+    
 
 
     

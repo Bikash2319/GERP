@@ -46,6 +46,10 @@ model_master = (By.XPATH, "//aside//span[text()= 'Model']")
 alarm_master = (By.XPATH, "//aside//span[text()= 'Alarm']")
 inventory_master = (By.XPATH, "//aside//span[text()= 'Inventory']")
 
+#Asset menu
+inventory_master = (By.XPATH, "//aside//span[text()= 'Asset ']")
+
+
 #Ticket module sub-menu
 notification_dashboard  = (By.XPATH, "//aside//span[text()= 'Notification Dashboard']")
 ticket_dashboard = (By.XPATH, "//aside//span[text()= 'Ticket Dashboard']")

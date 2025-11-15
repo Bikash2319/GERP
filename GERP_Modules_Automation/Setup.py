@@ -87,7 +87,7 @@ def logout_gensom(wait):
 def click_on(driver , wait, element):
     actions = ActionChains(driver)
     actions.click(wait.until(ec.element_to_be_clickable(element))).send_keys(Keys.ENTER).perform()
-    time.sleep(2)
+    time.sleep(1)
     # actions.move_to_element(driver.find_element(By.CSS_SELECTOR, "[fill='url(#pattern0_48_8)']")).perform()
     
     
