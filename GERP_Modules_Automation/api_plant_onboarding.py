@@ -3,7 +3,7 @@ import json
 from Setup import *
 from Locators import *
 
-token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiaWthc2guc2Fob29Ac2hhcmFqbWFuLmNvbSIsImxvZ2luX2lkIjoyNiwidXNlcl9pZCI6MzEsInVzZXJfdHlwZSI6Ik8mTSBURUFNIiwiZXhwIjoxNzYzMjU5MDc0fQ.-HFPeXhrC3mUxKqr_gQ79OsAGn73-VTHyjxTaCRCeew"
+token = ""
 base_url = "https://app.release.gensomerp.com"
 headers = {
     "Authorization": f"Bearer {token}",
@@ -17,11 +17,12 @@ file_path = "C:\Automation\GERP\project_details.xlsx"
 df = pd.read_excel(file_path, "demo")
 data_list = df.to_dict(orient="records")
 
+
 for i in range(1, 2):
     for item in data_list:
         project_name = item.get("project_name")
         # print(f"DEMO-{project_name}-{i:03d}")
-        do = i + 100
+        display_order = i + 100
         plant_payload = {
             "plant_code": f"demo-{project_name}-{i:03d}", #need to fetch from excel sheet
             "plant_name": f"DEMO-{project_name}-{i:03d}", #need to fetch from excel sheet
@@ -48,10 +49,11 @@ for i in range(1, 2):
             "is_smb_installed": True,
             "start_time": "07:00",
             "end_time": "19:30",
-            "display_order": do #need to fetch from the excel sheet
+            "display_order": display_order #need to fetch from the excel sheet
         }
         create_plant_url = f"{base_url}/api/add_basic_plant_details"
         
+        time.sleep(2)
         try:
             response = requests.post(create_plant_url, headers=headers, data=json.dumps(plant_payload))
             print("Status Code:", response.status_code)
@@ -95,7 +97,3 @@ for i in range(1, 2):
     click_on(driver, wait, asset_menu)
     
     
-
-
-    
-
