@@ -67,21 +67,25 @@ for i in range(1, 2):
                 else:
                     print(f"Project ID: {project_id}")
                     
-                    try:
-                        site_user_url = f"{base_url}/api/link_user_to_project/{project_id}"
-                        site_person_payload = {
-                            "user_id": 31,
-                            "role_type": "SITE_TECH"
-                        }
-                        link_response = requests.post(site_user_url, headers=headers, data=json.dumps(site_person_payload))
-                        print("\nUser Status Code:", link_response.status_code)
+                    user_id = [31]
+                    for user in user_id:
+                        try:
+                            site_user_url = f"{base_url}/api/link_user_to_project/{project_id}"
+                            site_person_payload = {
+                                "user_id": user,
+                                "role_type": "SITE_TECH"
+                            }
+                            link_response = requests.post(site_user_url, headers=headers, data=json.dumps(site_person_payload))
+                            print("\nUser Status Code:", link_response.status_code)
 
-                        if link_response.status_code == 201:
-                            print(f"User linked successfully to project ID {project_id}")
-                        else:
-                            print(f"Failed to link user: {link_response.text}")
-                    except requests.exceptions.RequestException as e:
-                        print(f"Error while linking user to project: {e}")
+                            if link_response.status_code == 201:
+                                print(f"{user} linked successfully to project ID {project_id}")
+                            elif response.status_code == 404:
+                                print(f"User id {user} not found")
+                            else:
+                                print(f"Failed to link user id - {user}: {link_response.text}")
+                        except requests.exceptions.RequestException as e:
+                            print(f"Error while linking user to project: {e}")
                         
             else:
                 print(f"Project creation failed: {response.text}")

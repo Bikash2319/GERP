@@ -47,7 +47,8 @@ alarm_master = (By.XPATH, "//aside//span[text()= 'Alarm']")
 inventory_master = (By.XPATH, "//aside//span[text()= 'Inventory']")
 
 #Asset menu
-inventory_master = (By.XPATH, "//aside//span[text()= 'Asset ']")
+asset_list = (By.XPATH, "//aside//span[text()= 'Asset List']")
+asset_heirarchy = (By.XPATH, "//aside//span[text()= 'Asset Hierarchy']")
 
 
 #Ticket module sub-menu
@@ -98,7 +99,22 @@ add_sub_category = (By.XPATH, "//div[@ngbtooltip='Add SubCategory']")
 subCat_category_dd = (By.XPATH, "//select[@formcontrolname='catType']")
 subCat_input = (By.XPATH, "//input[@formcontrolname='subCat']")
 
+
+#Asset Module
+ah_project_dd = (By.XPATH, "(//app-asset-hierarchy-layout//p-dropdown)[1]")
+ah_project_dd_search_bar = (By.XPATH, "//p-iconfield//input[@placeholder='Search...']")
+add_asset_btn = (By.XPATH, "//span[text() ='Add Assets']")
+asset_name = (By.XPATH, "//input[@formcontrolname='asset_name']")
+category_dd = (By.XPATH, "//p-floatlabel//span[@id='asset_category_id']")
+
+asset_slno = (By.XPATH, "//input[@formcontrolname='serial_number']")
+save_asset_btn = (By.XPATH, "//button//span[text()=' Save Asset ']")
+cancel_asset_btn = (By.XPATH, "//button//span[text()='Cancel']")
+
+
+
 #warehouse module
+
 
 
 
@@ -108,4 +124,6 @@ subCat_input = (By.XPATH, "//input[@formcontrolname='subCat']")
 
 
 
-    
+
+
+#click functin

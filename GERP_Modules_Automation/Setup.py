@@ -12,7 +12,8 @@ from selenium.webdriver.support.ui import Select
 import pandas as pd
 
 TOKEN = r"C:\Automation\GERP\GERP_Modules_Automation\token.txt"
-
+chromedriver_path = r"C:\Program Files\Python\Scripts\chromedriver.exe"
+excel_file = ""
 
 def setup_driver():  
     time.sleep(0.5)
@@ -20,7 +21,7 @@ def setup_driver():
     # chrome_options.add_argument("--ignore-ssl-errors")
     # chrome_options.add_argument("--allow-insecure-localhost") 
     chrome_option = Options()
-    service = Service(executable_path=r"C:\Program Files\Python\Scripts\chromedriver.exe")
+    service = Service(executable_path=chromedriver_path)
     driver = webdriver.Chrome(options=chrome_option, service=service)
     driver.maximize_window()
     driver.implicitly_wait(10)
@@ -84,7 +85,7 @@ def logout_gensom(wait):
         print("Token not found, nothing to clear.")
         
 
-def click_on(driver , wait, element):
+def click_on(driver, wait, element):
     actions = ActionChains(driver)
     actions.click(wait.until(ec.element_to_be_clickable(element))).send_keys(Keys.ENTER).perform()
     time.sleep(1)
